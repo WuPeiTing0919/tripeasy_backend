@@ -294,12 +294,13 @@ async function get_user_captcha(req, res, next){
         });
 
         // 將驗證碼存在 cookie，5 分鐘內有效
-        res.cookie('captcha', captcha.text, {
+        res.cookie('captcha', captchaText, {
             maxAge: 5 * 60 * 1000,
             httpOnly: true,
-            secure: false,        // ✅ 本機開發環境務必要 false，否則不會設 cookie
-            sameSite: 'Lax'       // ✅ 跨子網域或不同 port 要用 'Lax' 或 'None'
+            secure: true,           // ✅ 要設 true！因為 Render 是 HTTPS
+            sameSite: 'None'        // ✅ 跨網域一定要設成 None
           });
+          
         res.type('svg');
         res.send(captcha.data);
     
