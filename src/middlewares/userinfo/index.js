@@ -251,6 +251,7 @@ async function patchuserresetPW(req, res, next) {
     }
 
     // [HTTP 400] 驗證碼已過期
+    console.log(req.cookies.captcha)
     const stored = req.cookies.captcha;
     if (!stored) {
         resStatus({
