@@ -294,7 +294,7 @@ async function get_user_captcha(req, res, next){
         });
 
         // 將驗證碼存在 cookie，5 分鐘內有效
-        res.cookie('captcha', captchaText, {
+        res.cookie('captcha', captcha.text, {
             maxAge: 5 * 60 * 1000,
             httpOnly: true,
             secure: true,           // ✅ 要設 true！因為 Render 是 HTTPS
